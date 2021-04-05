@@ -21,5 +21,8 @@
 * 10 - Users can have encrypted message conversations, with messages being encrypted within the database itself
 
 ## Styling (5 pts)
+5 - Application is mobile-friendly, and contains tasteful animations for some click events
 
 # Total (100 pts)
+
+Checked by Sam Winiarski 4/5
