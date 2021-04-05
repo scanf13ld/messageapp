@@ -1,3 +1,5 @@
+# Messaging Application
+
 ## Rubric turned in on time (5 pts)
 
 ## Languages/Frameworks used (30 pts)
