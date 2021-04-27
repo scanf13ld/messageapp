@@ -1,13 +1,25 @@
 // app.js
 
 const express = require('express');
+const bodyParser = require("body-parser");
+const passport = require("passport");
 
+//DB config
 const connectDB = require('./config/db');
 
 var cors = require('cors');
 
+// Bodyparser middleware
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
+
 // routes
 const messages = require('./routes/api/messages');
+app.use("/api/users", users);
 
 const app = express();
 
@@ -15,6 +27,11 @@ connectDB();
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
 
 // Init Middleware
 app.use(express.json({ extended: false }));

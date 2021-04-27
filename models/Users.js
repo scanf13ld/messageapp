@@ -22,10 +22,10 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
-  create_time: {
-    type: String,
+  date: {
+    type: Date,
     default: Date.now,
   }
 });
 
-module.exports = Users = mongoose.model('users', UsersSchema);
+module.exports = User = mongoose.model('users', UsersSchema);
