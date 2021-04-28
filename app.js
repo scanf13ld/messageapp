@@ -3,11 +3,14 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const users = require("./routes/api/users");
 
 //DB config
 const connectDB = require('./config/db');
 
 var cors = require('cors');
+
+const app = express();
 
 // Bodyparser middleware
 app.use(
@@ -21,7 +24,7 @@ app.use(bodyParser.json());
 const messages = require('./routes/api/messages');
 app.use("/api/users", users);
 
-const app = express();
+
 
 connectDB();
 
