@@ -1,35 +1,55 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 class Register extends Component {
     constructor() {
       super();
       this.state = {
         username: "",
-        first: "",
-        last: "",
+        name: "",
         password: "",
         password2: "",
         errors: {}
       };
     }
+	
+	componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+		if (this.props.auth.isAuthenticated) {
+		  this.props.history.push("/dashboard");
+		}
+	}
+	
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.errors) {
+			this.setState({
+				errors: nextProps.errors
+			});
+		}
+	}
+  
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
       };
+	  
     onSubmit = e => {
       e.preventDefault();
       const newUser = {
             username: this.state.username,
-            first: this.state.first,
-            last: this.state.last,
+            name: this.state.name,
             password: this.state.password,
             password2: this.state.password2
           };
-      console.log(newUser);
-      };
+      this.props.registerUser(newUser, this.props.history);
+	};
 
     render() {
-
+		const { errors } = this.state;
       return (
             <div className="container">
               <div className="row">
@@ -48,44 +68,57 @@ class Register extends Component {
                   </div>
                   <form noValidate onSubmit={this.onSubmit}>
                     <div className="input-field col s12">
+					Full name:
                       <input
                         onChange={this.onChange}
                         value={this.state.name}
-                        //error={errors.name}
+                        error={errors.name}
                         id="name"
                         type="text"
+						className={classnames("", {
+						invalid: errors.name
+						})}
                       />
-                      <label htmlFor="name">Name</label>
+					  <span className="red-text">{errors.name}</span>
                     </div>
-                    <div className="input-field col s12">
+					<div className="input-field col s12">
+					Username:
                       <input
                         onChange={this.onChange}
-                        value={this.state.email}
-                        //error={errors.email}
-                        id="email"
-                        type="email"
+                        value={this.state.username}
+                        error={errors.username}
+                        id="username"
+                        type="text"
+						className={classnames("", {
+						invalid: errors.username
+						})}
                       />
-                      <label htmlFor="email">Email</label>
+					  <span className="red-text">{errors.username}</span>
                     </div>
-                    <div className="input-field col s12">
+					<div className="input-field col s12">
+					Password:
                       <input
                         onChange={this.onChange}
                         value={this.state.password}
-                        //error={errors.password}
+                        error={errors.password}
                         id="password"
                         type="password"
+						className={classnames("", {
+						invalid: errors.username
+						})}
                       />
-                      <label htmlFor="password">Password</label>
+					  <span className="red-text">{errors.password}</span>
                     </div>
                     <div className="input-field col s12">
+					Confirm password:
                       <input
                         onChange={this.onChange}
                         value={this.state.password2}
-                        //error={errors.password2}
+                        error={errors.password2}
                         id="password2"
                         type="password"
                       />
-                      <label htmlFor="password2">Confirm Password</label>
+					  <span className="red-text">{errors.password2}</span>
                     </div>
                     <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                       <button
@@ -109,4 +142,19 @@ class Register extends Component {
     );
   }
 }
-export default Register;
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

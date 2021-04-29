@@ -1,3 +1,7 @@
+// routes/apis/users.js
+//CSE 330 Creative Project
+//Shane Canfield and Laura Bucchieri
+
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -25,12 +29,11 @@ User.findOne({ username: req.body.username }).then(user => { //look in database 
     } else {
       const newUser = new User({
         username: req.body.username,
-        first: req.body.first,
-        last: req.body.last,
+        name: req.body.name,
         password: req.body.password
       });
-// Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
+
+      bcrypt.genSalt(10, (err, salt) => { // Hash password before saving in database
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
@@ -48,31 +51,31 @@ User.findOne({ username: req.body.username }).then(user => { //look in database 
 // @desc Login user and return JWT token
 // @access Public
 router.post("/login", (req, res) => {
-  // Form validation
-const { errors, isValid } = validateLoginInput(req.body);
-// Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-const email = req.body.email;
-  const password = req.body.password;
-// Find user by email
-  User.findOne({ email }).then(user => {
-    // Check if user exists
+  
+	const { errors, isValid } = validateLoginInput(req.body); // Form validation
+
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+	const username = req.body.username;
+	const password = req.body.password;
+
+	User.findOne({ username }).then(user => {
+ 
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ usernamenotfound: "username not found" });
     }
-// Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
+	
+    bcrypt.compare(password, user.password).then(isMatch => { //if password matches
+      if (isMatch) { //finds user
+       
+        
         const payload = {
           id: user.id,
           name: user.name
         };
-// Sign token
-        jwt.sign(
+
+        jwt.sign( 
           payload,
           keys.secretOrKey,
           {

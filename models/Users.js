@@ -14,13 +14,9 @@ const UsersSchema = new Schema({
     type: String,
     required: true
   },
-  first: {
+  name: {
     type: String,
     required: true
-  },
-  last: {
-    type: String,
-    required: true,
   },
   date: {
     type: Date,
