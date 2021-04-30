@@ -85,7 +85,7 @@ class ShowMessageList extends Component {
 		  
 		  
 		  <div className="col s12 center-align">
-			<NewMessage user1={user.username} user2={user2}  conv_id={conv_id}/>
+			<NewMessage encrypted={encrypted} user1={user.username} user2={user2}  conv_id={conv_id}/>
               <br />
               <br />
               <hr />

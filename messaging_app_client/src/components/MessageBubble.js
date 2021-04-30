@@ -51,7 +51,10 @@ const MessageBubble = (props) => {
 					<div className="col">
 					  <p className="message">
 						<Link to={`/get-message/${message._id}`}>
-							{ message.message }
+							{ encrypted ? (
+								 DoDecrypt(message.message)  ):(
+								 message.message
+							 )}
 						</Link>
 					</p>
 					</div>

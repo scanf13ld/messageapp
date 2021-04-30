@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
+var aes256 = require("aes256");
+
+var key = "ouhpr2h39hpawdnloi1h2neddwqd12";
+
+const DoEncrypt = (text) => {
+  var encrypted = aes256.encrypt(key, text);
+  return encrypted;
+};
+
+
 
 class NewMessage extends Component {
   constructor() {
@@ -22,6 +32,8 @@ class NewMessage extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+	
+	
 
     const data = {
       user1: this.props.user1,
@@ -30,6 +42,12 @@ class NewMessage extends Component {
       send_time: this.state.send_time,
 	  conversation_id : this.props.conv_id
     };
+	
+	if (this.props.encrypted){
+		
+		data.message = DoEncrypt(data.message);
+		console.log(data.maessage);
+	}
 
     axios
       .post('http://localhost:8082/api/messages', data)

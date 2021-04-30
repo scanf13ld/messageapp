@@ -85,14 +85,7 @@ router.post('/', (req, res) => {
 		send_time: req.body.send_time,
 		conversation_id: req.body.conversation_id
     });
-	 
-	const isEncrypted = Conversation.findOne({_id : req.body.conversation_id, encrypted:true } );
-	if (isEncrypted){
-		
-		console.log(newMessage.message);
-		newMessage.message = DoEncrypt(req.body.message);
-		console.log(newMessage.message);	
-	}
+	
 	
 	newMessage.save()
 	  .then(message => res.json({ msg: 'Message added successfully' }))
