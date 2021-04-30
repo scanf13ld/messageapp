@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 // routes
 const messages = require('./routes/api/messages');
+
 app.use("/api/users", users);
 
 

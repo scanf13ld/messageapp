@@ -4,40 +4,76 @@
 
 const express = require('express');
 const router = express.Router();
+//const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 
 const Message = require('../../models/Messages'); // Load Message model
+const Conversation = require('../../models/Conversations'); // Load convo model
 
 // @route GET api/messages/test
 // @description tests messages route
 // @access Public
 router.get('/test', (req, res) => res.send('message route testing!'));
 
-// @route GET api/messages
-// @description Get all messages
-// @access Public
-router.get('/', (req, res) => {
-  Message.find()
-    .then(messages => res.json(messages))
-    .catch(err => res.status(404).json({ nomessagesfound: 'No Messages found' }));
-});
+
+
 
 // @route GET api/messages/:id
-// @description Get single messages by id
+// @description Get all messages by conversation id
 // @access Public
 router.get('/:id', (req, res) => {
+	console.log("here");
+	let c_id = mongoose.Types.ObjectId(req.params.id);
+	
+	//let user1 = req.params.user1;
+	let user1 = req.params.user1;
+	console.log(user1);
+	console.log(c_id);
+	//let c_id = mongoose.Types.ObjectId(req.params.id);
+	
+	//console.log(user1);
+	//console.log(c_id);
+	
+	
+	//Message.find({ user1: user1, user2: user1 }).sort({ created: -1})
+	Message.find(  
+	{ conversation_id : c_id } )
+	.then(messages => res.json(messages))
+	.catch(err => res.status(404).json({ nomessagesfound: 'No Messages found' }));
+});
+
+// @route GET api/messages/message/:id
+// @description Get single messages by id
+// @access Public
+router.get('/message/:id', (req, res) => {
+	console.log("here");
   Message.findById(req.params.id)
     .then(message => res.json(message))
-    .catch(err => res.status(404).json({ nobookfound: 'No Message found' }));
+    .catch(err => res.status(404).json({ nobookfound: 'No Message (by id) found' }));
 });
 
 // @route GET api/messages
 // @description add/save message
 // @access Public
 router.post('/', (req, res) => {
-  Message.create(req.body)
-    .then(message => res.json({ msg: 'Message added successfully' }))
-    .catch(err => res.status(400).json({ error: 'Unable to add this message' }));
+
+	// const newMessage = new Message({  
+	//	user1: req.body.username,
+	//	name: req.body.name,
+	//	password: req.body.password
+    // });
+	
+	
+  console.log(req.body.user1);
+  console.log(req.body.user2);
+  console.log(req.body.message);
+  console.log(req.body.send_time);
+  console.log(req.body.conversation_id);
+
+  //Message.create(req.body)
+  //  .then(message => res.json({ msg: 'Message added successfully' }))
+  //  .catch(err => res.status(400).json({ error: 'Unable to add this message' }));
 });
 
 
@@ -49,5 +85,40 @@ router.delete('/:id', (req, res) => {
     .then(message => res.json({ mgs: 'Message entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such message' }));
 });
+
+// @route POST api/messages/conversation
+// @description add/save conversation
+// @access Public
+router.post('/conversation', (req, res) => {
+  Conversation.create(req.body)
+    .then(conversation => {data: conversation.data })
+    .catch(err => res.status(400).json({ error: 'Unable to add this conversation' }));
+	
+  //console.log(Conversation._id);
+});
+
+// @route GET api/messages/conversations
+// @description display all conversations
+// @access Public
+router.get('/conversations/:id', (req, res) => {
+  //console.log(req.params.user1);
+  //let user1 = mongoose.Types.ObjectId(req.params.user1);
+  let user1 = req.params.id;
+  console.log(user1);
+  Conversation.find(  
+	{ $or : [  { user1 : user1 }, { user2 : user1 } ] })
+    .then(conversations => res.json(conversations))
+    .catch(err => res.status(404).json({ noconversationsfound: 'No conversations found' }));
+});
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

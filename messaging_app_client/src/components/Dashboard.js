@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
+import ShowConversationList from './ShowConversationList';
+
 class Dashboard extends Component {
+	
 	onLogoutClick = e => {
 		e.preventDefault();
 		this.props.logoutUser();
 	};
+	
 	render() {
 	console.log(this.props.auth);
     const { user } = this.props.auth;
@@ -17,12 +22,16 @@ class Dashboard extends Component {
 			<div className="row">
 			  <div className="col s12 center-align">
 				<h4>
-				  <b>Hey there,</b> {user.name.split(" ")[0]}
-				  <p className="flow-text grey-text text-darken-1">
-					You are logged into a full-stack{" "}
-					<span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-				  </p>
+				  <b>Hey there,</b> {user.name.split(" ")[0]}!
 				</h4>
+				<br/>
+				
+				<ShowConversationList username={user.username}/>
+				
+				<Link to="/new-conversation" className="btn btn-large waves-effect waves-light hoverable light-blue accent-3">
+					  Start a conversation
+				</Link><br/>
+				
 				<button
 				  style={{
 					width: "150px",

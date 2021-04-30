@@ -11,7 +11,8 @@ class NewMessage extends Component {
       user1: '',
       user2:'',
       message:'',
-      send_time:''
+      send_time:'',
+	  conversation_id:''
     };
   }
 
@@ -23,10 +24,11 @@ class NewMessage extends Component {
     e.preventDefault();
 
     const data = {
-      user1: this.state.user1,
-      user2: this.state.user2,
+      user1: this.props.user1,
+      user2: this.props.user2,
       message: this.state.message,
-      send_time: this.state.send_time
+      send_time: this.state.send_time,
+	  conversation_id : this.props.conv_id
     };
 
     axios
@@ -36,7 +38,8 @@ class NewMessage extends Component {
           user1: '',
           user2:'',
           message:'',
-          send_time:''
+          send_time:'',
+		  conversation_id:''
         })
         this.props.history.push('/');
       })
@@ -47,45 +50,12 @@ class NewMessage extends Component {
 
   render() {
     return (
-      <div className="CreateMessage">
+      <div className="container valign-wrapper">
         <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Conversation List
-              </Link>
-            </div>
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">New Message</h1>
-              <p className="lead text-center">
-                  Create new message
-              </p>
-
+          <div className="row">			
+            <div className="col s12 center-align">
               <form noValidate onSubmit={this.onSubmit}>
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='User 1'
-                    name='user1'
-                    className='form-control'
-                    value={this.state.user1}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <br />
-
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='User 2'
-                    name='user2'
-                    className='form-control'
-                    value={this.state.user2}
-                    onChange={this.onChange}
-                  />
-                </div>
-
+                
                 <div className='form-group'>
                   <input
                     type='text'
@@ -100,7 +70,8 @@ class NewMessage extends Component {
 
                 <input
                     type="submit"
-                    className="btn btn-outline-warning btn-block mt-4"
+                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+					value="Send"
                 />
               </form>
           </div>

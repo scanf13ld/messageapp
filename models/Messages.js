@@ -18,6 +18,10 @@ const MessageSchema = new mongoose.Schema({
   send_time: {
     type: Date,
     default: Date.now
+  },
+  conversation_id: {
+	type: mongoose.Schema.Types.ObjectId,
+	required: true
   }
 });
 

@@ -7,23 +7,23 @@ const Schema = mongoose.Schema;
 
 const ConversationsSchema = new Schema({
   user1: {
-    type: Schema.Types.ObjectId,
-    ref: 'users',
+    type: String,
     required: true,
   },
   user2: {
-    type: Schema.Types.ObjectId,
-    ref: 'users',
-    required: true,
-  },
-  last_content: {
     type: String,
     required: true,
   },
-  send_time: {
+  last_msg: {
     type: String,
-    required: true,
+  },
+  creation: {
+    type: Date,
     default: Date.now,
+  },
+  encrypted: {
+	type: Boolean,
+	default: false
   }
 });
 

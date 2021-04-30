@@ -18,8 +18,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import NewMessage from './components/NewMessage';
+import NewConversation from './components/NewConversation';
 import Dashboard from './components/Dashboard';
 import ShowMessageList from './components/ShowMessageList';
+import ShowConversationList from './components/ShowConversationList';
 import GetMessage from './components/GetMessage';
 import Home from './components/Home';
 import Register from "./components/auth/Register";
@@ -56,9 +58,13 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path='/show-message-list' component={ShowMessageList} />
+          <Route exact path='/show-message-list/:id' component={ShowMessageList} />
           <Route exact path='/new-message' component={NewMessage} />
           <Route exact path='/get-message/:id' component={GetMessage} />
+		  <Route exact path='/new-conversation' component={NewConversation} />
+		  <Route exact path='/show-conversation-list' component={ShowConversationList} />
+		  
+		  
 		  
 		  <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
