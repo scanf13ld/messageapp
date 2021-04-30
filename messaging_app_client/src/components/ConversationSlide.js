@@ -21,7 +21,8 @@ const ConversationSlide = (props) => {
 						pathname: `/show-message-list/${conversation._id}`,
 						state: {
 							user1: user1,
-							user2: user2
+							user2: user2,
+							encrypted: props.conversation.encrypted
 						}
 					}}>
 						<div className="card-body">

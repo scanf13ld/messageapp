@@ -12,11 +12,15 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
+//CSS
 import './App.css';
 
+//Redux
 import { Provider } from "react-redux";
 import store from "./store";
 
+
+//Components
 import NewMessage from './components/NewMessage';
 import NewConversation from './components/NewConversation';
 import Dashboard from './components/Dashboard';

@@ -2,6 +2,9 @@
 //CSE 330 Creative Project
 //Shane Canfield and Laura Bucchieri
 
+
+
+
 const express = require('express');
 const router = express.Router();
 //const jwt = require('jsonwebtoken');
@@ -10,6 +13,22 @@ const mongoose = require('mongoose');
 
 const Message = require('../../models/Messages'); // Load Message model
 const Conversation = require('../../models/Conversations'); // Load convo model
+
+var aes256 = require("aes256");
+
+var key = "ouhpr2h39hpawdnloi1h2neddwqd12";
+
+const DoEncrypt = (text) => {
+  var encrypted = aes256.encrypt(key, text);
+  return encrypted;
+};
+
+const DoDecrypt = (cipher) => {
+ 
+  var decrypted = aes256.decrypt(key, cipher);
+  return decrypted;
+};
+
 
 // @route GET api/messages/test
 // @description tests messages route
@@ -34,8 +53,9 @@ router.get('/:id', (req, res) => {
 	
 	//console.log(user1);
 	//console.log(c_id);
-	
-	
+	//const isEncrypted = Conversation.find({$and : [{_id : c_id}, {encrypted : true }]});
+	//isEncrypted;
+	let messages;
 	//Message.find({ user1: user1, user2: user1 }).sort({ created: -1})
 	Message.find(  
 	{ conversation_id : c_id } )
@@ -58,22 +78,25 @@ router.get('/message/:id', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
 
-	// const newMessage = new Message({  
-	//	user1: req.body.username,
-	//	name: req.body.name,
-	//	password: req.body.password
-    // });
+	const newMessage = new Message({  
+		user1: req.body.user1,
+		user2: req.body.user2,
+		message: req.body.message,
+		send_time: req.body.send_time,
+		conversation_id: req.body.conversation_id
+    });
+	 
+	const isEncrypted = Conversation.findOne({_id : req.body.conversation_id, encrypted:true } );
+	if (isEncrypted){
+		
+		console.log(newMessage.message);
+		newMessage.message = DoEncrypt(req.body.message);
+		console.log(newMessage.message);	
+	}
 	
-	
-  console.log(req.body.user1);
-  console.log(req.body.user2);
-  console.log(req.body.message);
-  console.log(req.body.send_time);
-  console.log(req.body.conversation_id);
-
-  //Message.create(req.body)
-  //  .then(message => res.json({ msg: 'Message added successfully' }))
-  //  .catch(err => res.status(400).json({ error: 'Unable to add this message' }));
+	newMessage.save()
+	  .then(message => res.json({ msg: 'Message added successfully' }))
+	  .catch(err => res.status(400).json({ error: 'Unable to add this message' }));	
 });
 
 

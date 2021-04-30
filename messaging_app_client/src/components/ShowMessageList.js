@@ -43,6 +43,7 @@ class ShowMessageList extends Component {
   render() {
 	const { user } = this.props.auth;
 	const user2 = this.props.location.state.user2;
+	const encrypted = this.props.location.state.encrypted;
     const messages = this.state.messages;
     console.log("PrintMessage: " + messages);
     let messageList;
@@ -53,7 +54,7 @@ class ShowMessageList extends Component {
     } else {
 	  console.log("not false");
       messageList = messages.map((message, k) =>
-        <MessageBubble user1={user.username} user2= {user2} message={message} key={k} />
+        <MessageBubble encrypted={encrypted} user1={user.username} user2= {user2} message={message} key={k} />
       );
     }
 	
