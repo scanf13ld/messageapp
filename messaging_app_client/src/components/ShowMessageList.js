@@ -112,7 +112,7 @@ class ShowMessageList extends Component {
 								 <h2 className="display-4 text-center">{groupname}</h2>  ):(
 								 <h2 className="display-4 text-center">{user2}</h2>
 			 )}
-              
+              <hr />
             </div>
           </div>
 		  
@@ -134,7 +134,7 @@ class ShowMessageList extends Component {
 			
               <br />
               <br />
-              <hr />
+              
             </div>
 			
         </div>

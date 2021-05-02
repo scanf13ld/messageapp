@@ -21,7 +21,7 @@ class NewMessage extends Component {
       user1: '',
       user2:'',
       message:'',
-      send_time:'',
+      //send_time:'',
 	  conversation_id:''
     };
   }
@@ -39,7 +39,6 @@ class NewMessage extends Component {
       user1: this.props.user1,
       user2: this.props.user2,
       message: this.state.message,
-      send_time: this.state.send_time,
 	  conversation_id : this.props.conv_id
     };
 	
@@ -56,7 +55,6 @@ class NewMessage extends Component {
           user1: '',
           user2:'',
           message:'',
-          send_time:'',
 		  conversation_id:''
         })
         this.props.history.push('/');

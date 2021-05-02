@@ -40,12 +40,12 @@ const MessageBubble = (props) => {
 				<div className="row message-user1">
 					<div className="col">
 					  <p className="message">
-						<Link to={`/get-message/${message._id}`}>
+						
 							{ encrypted ? (
 								 DoDecrypt(message.message)  ):(
 								 message.message
 							 )}
-						</Link>
+						
 					</p>
 					</div>
 				</div>
@@ -63,12 +63,12 @@ const MessageBubble = (props) => {
 				<div className="row message-user2">
 					<div className="col">
 					  <p className="message">
-						<Link to={`/get-message/${message._id}`}>
+						
 							{ encrypted ? (
 								 DoDecrypt(message.message)  ):(
 								 message.message
 							 )}
-						</Link>
+						
 					</p>
 					</div>
 				</div>
@@ -82,3 +82,5 @@ const MessageBubble = (props) => {
 
 export default MessageBubble;
 
+//<Link to={`/get-message/${message._id}`}>
+//</Link>

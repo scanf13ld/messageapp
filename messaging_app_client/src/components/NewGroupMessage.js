@@ -21,7 +21,6 @@ class NewGroupMessage extends Component {
       from: '',
       group_id: '',
       message: '',
-      send_time: ''
     };
   }
 
@@ -51,11 +50,9 @@ class NewGroupMessage extends Component {
 	  .post('http://localhost:8082/api/messages/groupmessage/', data)
 	  .then(res => {
 		this.setState({
-		  user1: '',
-		  user2:'',
-		  message:'',
-		  send_time:'',
-		  conversation_id:''
+		  from: '',
+		  group_id: '',
+		  message: '',
 		})
 		this.props.history.push('/');
 		//window.location.reload();
