@@ -10,6 +10,7 @@
     "classnames": "^2.3.1",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
+    "react-animations": "^1.0.0",
     "react-dom": "^17.0.2",
     "react-input-checkbox": "^0.1.6",
     "react-redux": "^7.2.4",
@@ -17,6 +18,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

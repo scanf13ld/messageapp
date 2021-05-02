@@ -14,6 +14,8 @@ class ShowGroupList extends Component {
     };
 	
 	this.onDeleteClick = this.onDeleteClick.bind(this);
+	this.getUpdatedGroups = this.getUpdatedGroups.bind(this);
+	
   }
   
   onDeleteClick(id) {
@@ -77,12 +79,39 @@ class ShowGroupList extends Component {
         console.log('Error from ShowGroupsList');
       })
   };
+  
+  getUpdatedGroups() {
+	const { user } = this.props.auth; 
+	//console.log(this.props.match.params.id);
+	var request = {
+		params: {
+			user1: user.username
+		}
+	}
+    axios
+      .get('http://localhost:8082/api/messages/groups/'+user.username, request)
+      .then(res => {
+        this.setState({
+          groups: res.data,
+		  
+        })
+      })
+      .catch(err =>{
+        console.log('Error from ShowGroupsList');
+      })
+  };
+  
+  
 	
 
 
   render() {
 	const { user } = this.props.auth; 
 	let fn = this.onDeleteClick;
+	
+	
+	 
+	
     const groups = this.state.groups;
     console.log("Print groups: " + groups);
     let groupList;
@@ -96,7 +125,7 @@ class ShowGroupList extends Component {
 		  	groupList = groups.map(function(group, k){
 			
 				let name = group.name;
-				console.log("group slide");
+				console.log("ShowGroupList: "+name);
 			
 				return <GroupSlide onDeleteClick={fn} group = {group} name={name} key={k}  />
 			});
@@ -107,7 +136,6 @@ class ShowGroupList extends Component {
 
     return (
 
-        
           <div className="row">
                 {groupList}
           </div>

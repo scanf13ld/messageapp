@@ -117,13 +117,7 @@ class ShowConversationList extends Component {
 
     return (
         <div>
-          <div className="row">
-            <div className="col-md-12">
-              <br/>
-              <h2 className="display-4 text-center">Conversations</h2>
-            </div>
-
-          </div>
+          
 
           <div className="row">
                 {conversationList}

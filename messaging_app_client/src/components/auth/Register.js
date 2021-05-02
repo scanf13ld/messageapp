@@ -6,6 +6,14 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 
+import styled, { keyframes } from 'styled-components';
+import { pulse, slideInLeft } from 'react-animations';
+
+const SlideAnimation = keyframes`${slideInLeft}`;
+const SlideDiv = styled.div`
+  animation: 1 0.2s ${SlideAnimation};
+`;
+
 class Register extends Component {
     constructor() {
       super();
@@ -51,9 +59,10 @@ class Register extends Component {
     render() {
 		const { errors } = this.state;
       return (
-            <div className="container">
+            <div style={{ height: "100vh" }} className="container valign-wrapper">
+			<SlideDiv>
               <div className="row">
-                <div className="col s8 offset-s2">
+                <div className="col s8">
                   <Link to="/" className="btn-flat waves-effect">
                     <i className="material-icons left">keyboard_backspace</i> Back to
                     home
@@ -137,6 +146,7 @@ class Register extends Component {
                   </form>
                 </div>
               </div>
+			  </SlideDiv>
         </div>
 
     );

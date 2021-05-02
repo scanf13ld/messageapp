@@ -66,8 +66,9 @@ class NewGroupMessage extends Component {
 
   render() {
     return (
-      <div className="container valign-wrapper">
+      
         <div className="container">
+		<br/><br/>
           <div className="row">			
             <div className="col s12 center-align">
               <form noValidate onSubmit={this.onSubmit}>
@@ -92,8 +93,9 @@ class NewGroupMessage extends Component {
               </form>
           </div>
           </div>
+		  
         </div>
-      </div>
+      
     );
   }
 }

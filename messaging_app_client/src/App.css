@@ -244,3 +244,7 @@ img {
 	
 	color: red;
 }
+
+.inline-btn {
+	display: inline-block;
+}

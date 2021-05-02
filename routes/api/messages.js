@@ -225,11 +225,21 @@ router.delete('/group/messages/:id', (req, res) => {
   
 });
 
-router.delete('/group/members/:id', (req, res) => {
-	
-	GroupMembers.deleteMany({group_id: req.params.id })
-    .then(group => res.json({ mgs: 'Group members deleted successfully' }))
-    .catch(err => res.status(404).json({ error: 'Could not delete group members' }));
+router.post('/group/members/', (req, res) => { //Works
+	console.log(req.body);
+	GroupMember.create(req.body)
+	   .then(groupmember => {data: groupmember.data })
+		.catch(err => res.status(400).json({ error: 'Unable to add new member to group' }));
+  
+});
+
+router.put('/group/:id', (req, res) => {
+	console.log(req.body);
+	console.log(req.params.id);
+	var newvalues = { $set: {name: req.body.name}};
+	Group.updateOne({_id: req.params.id }, newvalues)
+    .then(group => res.json({ mgs: 'Group entry changed successfully' }))
+    .catch(err => res.status(404).json({ error: 'Could not change group name' }));
   
 });
 

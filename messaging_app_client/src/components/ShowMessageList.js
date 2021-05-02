@@ -6,8 +6,18 @@ import MessageBubble from './MessageBubble';
 import NewMessage from './NewMessage';
 import NewGroupMessage from './NewGroupMessage';
 
+import EditGroupUtility from './EditGroupUtility';
+
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
+import styled, { keyframes } from 'styled-components';
+import { slideInRight } from 'react-animations';
+
+const SlideAnimation = keyframes`${slideInRight}`;
+const SlideDiv = styled.div`
+  animation: 1 0.2s ${SlideAnimation};
+`;
 
 class ShowMessageList extends Component {
   constructor(props) {
@@ -95,50 +105,60 @@ class ShowMessageList extends Component {
     }
 	
     return (
-	
-      <div className="container valign-wrapper">
-	  
-        <div className="container">
+	<div>
 		
-          <div className="row">
+	
+		  <div className="container valign-wrapper">
 		  
-            <div className="col s12">
-			<br/>
-			<Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
-                  Back
-		    </Link>
+			<div className="container">
 			
-			{ groupname != null ? (
-								 <h2 className="display-4 text-center">{groupname}</h2>  ):(
-								 <h2 className="display-4 text-center">{user2}</h2>
-			 )}
-              <hr />
-            </div>
-          </div>
-		  
-		  
+			  <div className="row">
+			  
+				<div className="col s12">
+				<br/>
+				<Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
+					  Back
+				</Link>
+				
+				{ groupname != null ? (
+					<React.Fragment>
+					<h2 className="display-4 text-center">{groupname}</h2>
+					<EditGroupUtility groupname= {groupname} group_id={conv_id}/> <br/>
+					</React.Fragment>
+					):(
+					<h2 className="display-4 text-center">{user2}</h2>
+				 )}
+				 
+				  
+				</div>
+			  </div>
+			  <hr />
+			  
+			  
 
-          <div className="col s12 center-align">
-                {messageList}
-          </div>
-		  
-		  
-		  <div className="col s12 center-align">
-		  
-		  { groupname != null ? (
-			 <NewGroupMessage encrypted={encrypted} from={user.username} group_id={conv_id}/>  
-				):(
-			 <NewMessage encrypted={encrypted} user1={user.username} user2={user2}  conv_id={conv_id}/>
-				)}
-		 
-			
-              <br />
-              <br />
-              
-            </div>
-			
-        </div>
-      </div>
+			  <div className="col s12 center-align">
+					{messageList}
+			  </div>
+			  
+			  
+			  <div className="col s12 center-align">
+			  
+			  { groupname != null ? (
+				 <NewGroupMessage encrypted={encrypted} from={user.username} group_id={conv_id}/>  
+					):(
+				 <NewMessage encrypted={encrypted} user1={user.username} user2={user2}  conv_id={conv_id}/>
+					)}
+			 
+				
+				  <br />
+				  <br />
+				  
+				</div>
+				
+			</div>
+		  </div>
+	 
+	  </div>
     );
   }
 }
