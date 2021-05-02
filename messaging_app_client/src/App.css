@@ -120,7 +120,7 @@ img {
 
 .message-div {
   clear: both;
-  /*height: inherit;*/
+  height: 20px;
 }
 
 .newmessage-div {
@@ -222,4 +222,25 @@ img {
 
 .bootstrap-checkbox__label {
   vertical-align: middle;
+}
+
+.groupmsg_id {
+ position: relative; 
+ top: 8px;
+ right: 5px; 
+ font-size: 10px;
+ margin: 0px;
+ float: left;
+}
+.close-convo {
+	color: lightgray;
+	font-size: 20px;
+	position: relative;
+	left: 120px; 
+	z-index: 1;
+}
+
+.close-convo-link {
+	
+	color: red;
 }

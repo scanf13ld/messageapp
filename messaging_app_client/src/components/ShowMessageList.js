@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MessageBubble from './MessageBubble';
 import NewMessage from './NewMessage';
+import NewGroupMessage from './NewGroupMessage';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -27,21 +28,46 @@ class ShowMessageList extends Component {
 		}
 	}
 	console.log(request);
-    axios
-      .get('http://localhost:8082/api/messages/'+this.props.match.params.id, request)
-      .then(res => {
-        this.setState({
-          messages: res.data
-        })
-      })
-      .catch(err =>{
-        console.log('Error from ShowMessageList');
-      })
+	
+	const groupname = this.props.location.state.groupname;
+	
+	console.log("Params.id: " +this.props.match.params.id);
+	
+	
+	if (groupname == null){
+		axios
+		  .get('http://localhost:8082/api/messages/'+this.props.match.params.id, request)
+		  .then(res => {
+			this.setState({
+			  messages: res.data
+			})
+		  })
+		  .catch(err =>{
+			console.log('Error from ShowMessageList');
+		  })
+	} else{
+		axios
+		  .get('http://localhost:8082/api/messages/groupmessages/'+this.props.match.params.id, request)
+		  .then(res => {
+			this.setState({
+			  messages: res.data
+			})
+			console.log("Axios messages: "+this.state.messages);
+		  })
+		  .catch(err =>{
+			console.log('Error from ShowMessageList');
+		  })
+		
+		
+	}
   };
   
 
   render() {
+	console.log("Name: " +this.props.location.state.groupname);
 	const { user } = this.props.auth;
+	console.log("Location.state: "+this.props.location.state);
+	const groupname = this.props.location.state.groupname;
 	const user2 = this.props.location.state.user2;
 	const encrypted = this.props.location.state.encrypted;
     const messages = this.state.messages;
@@ -53,9 +79,19 @@ class ShowMessageList extends Component {
       messageList = "there is no message record!";
     } else {
 	  console.log("not false");
-      messageList = messages.map((message, k) =>
-        <MessageBubble encrypted={encrypted} user1={user.username} user2= {user2} message={message} key={k} />
-      );
+	  console.log("Messages:"+messages);
+	  
+	  if (groupname == null){
+		  messageList = messages.map((message, k) =>
+			<MessageBubble encrypted={encrypted} user1={user.username} user2= {user2} message={message} key={k} />
+			);
+	  } else{
+		  messageList = messages.map((message, k) =>
+		  <MessageBubble groupname={groupname} user1={user.username} from={message.from} message={message} key={k} />
+		  );
+	  }
+	  console.log(messageList);
+      
     }
 	
     return (
@@ -71,9 +107,12 @@ class ShowMessageList extends Component {
 			<Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
                   Back
 		    </Link>
-              <h2 className="display-4 text-center">{user2}</h2>
-			 
-			  
+			
+			{ groupname != null ? (
+								 <h2 className="display-4 text-center">{groupname}</h2>  ):(
+								 <h2 className="display-4 text-center">{user2}</h2>
+			 )}
+              
             </div>
           </div>
 		  
@@ -85,7 +124,14 @@ class ShowMessageList extends Component {
 		  
 		  
 		  <div className="col s12 center-align">
-			<NewMessage encrypted={encrypted} user1={user.username} user2={user2}  conv_id={conv_id}/>
+		  
+		  { groupname != null ? (
+			 <NewGroupMessage encrypted={encrypted} from={user.username} group_id={conv_id}/>  
+				):(
+			 <NewMessage encrypted={encrypted} user1={user.username} user2={user2}  conv_id={conv_id}/>
+				)}
+		 
+			
               <br />
               <br />
               <hr />

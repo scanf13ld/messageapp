@@ -14,15 +14,14 @@ const DoEncrypt = (text) => {
 
 
 
-class NewMessage extends Component {
+class NewGroupMessage extends Component {
   constructor() {
     super();
     this.state = {
-      user1: '',
-      user2:'',
-      message:'',
-      send_time:'',
-	  conversation_id:''
+      from: '',
+      group_id: '',
+      message: '',
+      send_time: ''
     };
   }
 
@@ -36,11 +35,10 @@ class NewMessage extends Component {
 	
 
     const data = {
-      user1: this.props.user1,
-      user2: this.props.user2,
+      from: this.props.from,
+      group_id: this.props.group_id,
       message: this.state.message,
       send_time: this.state.send_time,
-	  conversation_id : this.props.conv_id
     };
 	
 	if (this.props.encrypted){
@@ -50,23 +48,23 @@ class NewMessage extends Component {
 	}
 
     axios
-      .post('http://localhost:8082/api/messages', data)
-      .then(res => {
-        this.setState({
-          user1: '',
-          user2:'',
-          message:'',
-          send_time:'',
+	  .post('http://localhost:8082/api/messages/groupmessage/', data)
+	  .then(res => {
+		this.setState({
+		  user1: '',
+		  user2:'',
+		  message:'',
+		  send_time:'',
 		  conversation_id:''
-        })
-        this.props.history.push('/');
+		})
+		this.props.history.push('/');
 		//window.location.reload();
 		
-      })
-      .catch(err => {
-        console.log("Error in New Message!");
+	  })
+	  .catch(err => {
+		console.log("Error in New Message!");
 		window.location.reload();
-      })
+	  })
   };
 
   render() {
@@ -103,4 +101,4 @@ class NewMessage extends Component {
   }
 }
 
-export default NewMessage;
+export default NewGroupMessage;

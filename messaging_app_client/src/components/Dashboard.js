@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
 import ShowConversationList from './ShowConversationList';
+import ShowGroupList from './ShowGroupList';
 
 class Dashboard extends Component {
 	
@@ -28,8 +29,14 @@ class Dashboard extends Component {
 				
 				<ShowConversationList username={user.username}/>
 				
+				<ShowGroupList username={user.username}/>
+				
 				<Link to="/new-conversation" className="btn btn-large waves-effect waves-light hoverable light-blue accent-3">
 					  Start a conversation
+				</Link><br/><br/>
+				
+				<Link to="/new-group" className="btn btn-large waves-effect waves-light hoverable light-blue accent-3">
+					  Create a group
 				</Link><br/>
 				
 				<button

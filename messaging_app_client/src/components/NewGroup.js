@@ -3,36 +3,26 @@ import { Link, withRouter } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-
-import { Checkbox } from 'react-input-checkbox';
-
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 
 const mongoose = require('mongoose');
 
-class NewConversation extends Component {
+class NewGroup extends Component {
 	
   
   
   constructor() {
     super();
     this.state = {
-      user1: '',
-      user2:'',
-      last_msg:'',
-      creation: '',
-	  encrypted: false
+      name: '',
+	  owner: '',
+      creation: ''
     };
   }
   
-  handleCheckbox = (e) => {
-    //e.preventDefault();
-    this.setState({encrypted: !this.state.encrypted});
-  } 
-
+  
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -43,32 +33,25 @@ class NewConversation extends Component {
 	console.log(user);
 	
     const data = {
-      user1: user.username,
-      user2: this.state.user2,
-	  last_msg: this.state.last_msg,
-      creation: this.state.creation,
-	  encrypted: this.state.encrypted
-      
+      name: this.state.name,
+	  owner: user.username,
+      creation: this.state.creation
     };
 	
     axios
-      .post('http://localhost:8082/api/messages/conversation/', data)
+      .post('http://localhost:8082/api/messages/group/', data)
       .then(res => {
         this.setState({
-			user1: '',
-			user2:'',
-			last_msg:'',
-			creation: '',
-			encrypted: false
+			name: '',
+			creation: ''
         })
         this.props.history.push('/dashboard');
       })
       .catch(err => {
-        console.log("Error in New Conversation!");
+        console.log("Error in New Group!");
 		
       })
-	  this.props.history.push('/dashboard');
-	  window.location.reload();
+	  //window.location.reload();
 	
   };
 
@@ -84,9 +67,9 @@ class NewConversation extends Component {
               <Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
                   Back
 			  </Link>
-				<h1 className="display-4 text-center">New Conversation</h1>
+				<h1 className="display-4 text-center">New Group</h1>
 				<p className="lead text-center">
-					Create new conversation
+					Create new group
 				</p>
             </div>
 			
@@ -96,21 +79,15 @@ class NewConversation extends Component {
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Username'
-                    name='user2'
+                    placeholder='Group name'
+                    name='name'
                     className='form-control'
-                    value={this.state.user2}
+                    value={this.state.name}
                     onChange={this.onChange}
                   />
                 </div>
 				
-				<p>Encrypted?</p>      
-				<Checkbox
-					theme='bootstrap-checkbox'
-					value={this.state.encrypted}
-					onChange={this.handleCheckbox}
-					>  
-				&nbsp;</Checkbox>
+				
 				
 							
 
@@ -128,7 +105,7 @@ class NewConversation extends Component {
   }
 }
 
-NewConversation.propTypes = {
+NewGroup.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -141,6 +118,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {  }
-)(withRouter(NewConversation));
+)(withRouter(NewGroup));
 
 //export default NewConversation;

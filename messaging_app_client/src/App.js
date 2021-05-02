@@ -31,6 +31,10 @@ import Home from './components/Home';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
+import NewGroup from './components/NewGroup';
+import ShowGroupList from './components/ShowGroupList';
+
+
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
 
@@ -68,6 +72,8 @@ class App extends Component {
 		  <Route exact path='/new-conversation' component={NewConversation} />
 		  <Route exact path='/show-conversation-list' component={ShowConversationList} />
 		  
+		  <Route exact path='/new-group' component={NewGroup} />
+		  <Route exact path='/show-group-list' component={ShowGroupList} />
 		  
 		  
 		  <Switch>

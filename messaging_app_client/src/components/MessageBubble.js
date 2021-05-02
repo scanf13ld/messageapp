@@ -18,14 +18,25 @@ const MessageBubble = (props) => {
 	const user1 = props.user1;
 	const user2 = props.user2;
 	const encrypted = props.encrypted;
-	console.log(encrypted);
+	const group = props.groupname;
+	const from_id = props.from;
 	
+	console.log(from_id);
+	
+	console.log(group);
+	let test;
+	if (group){
+		test = message.from;
+	} else {
+		test = message.user1;
+	}
 
-	if (message.user1 === user1) //Displays different colors for sending/receiving
+	if (test === user1) //Displays different colors for sending/receiving
 	{
 		console.log("here");
 		return(
 			<div className="message-div">
+			
 				<div className="row message-user1">
 					<div className="col">
 					  <p className="message">
@@ -47,6 +58,8 @@ const MessageBubble = (props) => {
 		console.log("no here");
 		return(
 			<div className="message-div">
+			{ group ? (
+			<div><p className="groupmsg_id">{from_id}</p><br/></div> ):(<p></p>)}
 				<div className="row message-user2">
 					<div className="col">
 					  <p className="message">

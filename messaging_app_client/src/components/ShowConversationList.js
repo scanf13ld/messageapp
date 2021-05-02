@@ -12,7 +12,57 @@ class ShowConversationList extends Component {
     this.state = {
       conversations: []
     };
+	
+	this.onDeleteClick = this.onDeleteClick.bind(this);
   }
+  
+  
+  onDeleteClick(id) {
+	
+	
+	console.log("Clicked");
+	
+	axios.all
+	([
+		axios
+		  .delete('http://localhost:8082/api/messages/conversation/'+id)
+		  .then(res => {
+			this.props.history.push("/");
+		  })
+		  .catch(err => {
+			console.log("Error form ShowConversationList_deleteClick");
+			
+		}),
+		axios
+		  .delete('http://localhost:8082/api/messages/conversation/messages/'+id)
+		  .then(res => {
+			this.props.history.push("/");
+		  })
+		  .catch(err => {
+			console.log("Error form ShowConversationList_deleteClick");
+			
+		}),
+		
+	]).then(axios.spread((data1, data2) => {
+	// output of req.
+	console.log('data1', data1, 'data2', data2)
+	}));
+	
+	axios
+      .delete('http://localhost:8082/api/messages/conversation/'+id)
+      .then(res => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log("Error form ShowConversationList_deleteClick");
+		window.location.reload();
+      })
+	  window.location.reload();
+	  
+   };
+  
+  
+  
 
   componentDidMount() {
 	const { user } = this.props.auth; 
@@ -39,6 +89,7 @@ class ShowConversationList extends Component {
 
   render() {
 	const { user } = this.props.auth; 
+	let fn = this.onDeleteClick;
     const conversations = this.state.conversations;
     console.log("Print Conversations: " + conversations);
     let conversationList;
@@ -57,7 +108,7 @@ class ShowConversationList extends Component {
 				user2 = conversation.user2;
 			}
 			
-			return <ConversationSlide encrypted={conversation.encrypted} user1={user.username} user2={user2} conversation={conversation} key={k}  />
+			return <ConversationSlide onDeleteClick={fn} encrypted={conversation.encrypted} user1={user.username} user2={user2} conversation={conversation} key={k}  />
 			});
 	  }
 	  
