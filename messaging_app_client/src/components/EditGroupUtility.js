@@ -1,3 +1,7 @@
+// src/components/EditGroupUtility.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';

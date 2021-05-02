@@ -1,4 +1,6 @@
 // app.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
 
 const express = require('express');
 const bodyParser = require("body-parser");

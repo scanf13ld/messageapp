@@ -1,6 +1,8 @@
 // src/utils/setAuthToken.js
-//CSE 330 Creative Project
-//Shane Canfield and Laura Bucchieri
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
 
 import axios from "axios";
 

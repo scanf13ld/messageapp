@@ -1,3 +1,7 @@
+// src/components/Dashboard.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";

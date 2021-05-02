@@ -1,3 +1,7 @@
+// src/components/ShowConversationList.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';

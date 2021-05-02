@@ -1,3 +1,9 @@
+// src/components/auth/Login.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,10 +31,11 @@ class Login extends Component {
 	}
 	
 	componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
+   
+    if (this.props.auth.isAuthenticated) { //redirect them to dashboard if logged in
       this.props.history.push("/dashboard");
     }
+	
   }
 	
 	componentWillReceiveProps(nextProps) {

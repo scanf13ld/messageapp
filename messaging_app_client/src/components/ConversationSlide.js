@@ -1,24 +1,16 @@
+// src/components/ConversationSlide.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
-
-
-
-
-
-
-
-
-
 
 
 const ConversationSlide = (props) => {
     const conversation  = props.conversation;
 	const user1 = props.user1;
 	const user2 = props.user2;
-	//const encrypted = props.encrypted;
-
-   
 
     return(
 		

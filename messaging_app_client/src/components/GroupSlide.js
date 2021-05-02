@@ -1,9 +1,10 @@
+// src/components/GroupSlide.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
-
-
-
 
 const GroupSlide = (props) => {
 	const group = props.group;

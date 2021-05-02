@@ -1,6 +1,13 @@
+// src/actions/passport.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
+
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const mongoose = require("mongoose");
+
 const User = mongoose.model("users");
 const keys = require("../config/keys");
 const opts = {};

@@ -1,3 +1,9 @@
+// src/components/auth/Register.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
+
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
@@ -27,8 +33,7 @@ class Register extends Component {
     }
 	
 	componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
-		if (this.props.auth.isAuthenticated) {
+		if (this.props.auth.isAuthenticated) { //redirect them to dashboard if logged in
 		  this.props.history.push("/dashboard");
 		}
 	}

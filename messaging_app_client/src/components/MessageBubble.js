@@ -1,3 +1,8 @@
+// src/components/MessageBubble.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
@@ -82,5 +87,3 @@ const MessageBubble = (props) => {
 
 export default MessageBubble;
 
-//<Link to={`/get-message/${message._id}`}>
-//</Link>

@@ -2,6 +2,8 @@
 //CSE 330 Creative Project
 //Shane Canfield and Laura Bucchieri
 
+// Acknowledgements to blog.bitsrc.io
+
 import {
   SET_CURRENT_USER,
   USER_LOADING

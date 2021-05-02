@@ -1,3 +1,7 @@
+// src/index.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

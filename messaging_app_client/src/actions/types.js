@@ -1,6 +1,8 @@
 // src/actions/types.js
-//CSE 330 Creative Project
-//Shane Canfield and Laura Bucchieri
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
 
 export const GET_ERRORS = "GET_ERRORS";
 export const USER_LOADING = "USER_LOADING";

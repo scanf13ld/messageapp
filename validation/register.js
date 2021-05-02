@@ -1,31 +1,38 @@
+// validation/register.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
+
 const Validator = require("validator");
+
 const isEmpty = require("is-empty");
+
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-// Convert empty fields to an empty string so we can use validator functions
+
   data.username = !isEmpty(data.username) ? data.username : "";
   data.name = !isEmpty(data.name) ? data.name : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
-// username checks
-  if (Validator.isEmpty(data.username)) {
-    errors.username = "username field is required";
+
+  if (Validator.isEmpty(data.username)) {  // check username
+    errors.username = "Username field is required";
   }
 
-// Password checks
-  if (Validator.isEmpty(data.password)) {
+  if (Validator.isEmpty(data.password)) { // check password
     errors.password = "Password field is required";
   }
-if (Validator.isEmpty(data.password2)) {
+  
+  if (Validator.isEmpty(data.password2)) {
     errors.password2 = "Confirm password field is required";
   }
-if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = "Password must be at least 6 characters";
-  }
-if (!Validator.equals(data.password, data.password2)) {
+  
+  if (!Validator.equals(data.password, data.password2)) {
     errors.password2 = "Passwords must match";
   }
-return {
+  
+  return {
     errors,
     isValid: isEmpty(errors)
   };

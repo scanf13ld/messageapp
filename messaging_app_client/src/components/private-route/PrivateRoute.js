@@ -1,3 +1,9 @@
+// src/components/private-route/PrivateRoute.js
+// CSE 330 Creative Project
+// Shane Canfield and Laura Bucchieri
+
+// Acknowledgements to blog.bitsrc.io
+
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
