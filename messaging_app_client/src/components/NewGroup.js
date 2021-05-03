@@ -68,7 +68,7 @@ class NewGroup extends Component {
 		  
             <div className="col s12">
               <br />
-              <Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
+              <Link to="/dashboard" className="btn btn-small blue">
                   Back
 			  </Link>
 				<h1 className="display-4 text-center">New Group</h1>
@@ -98,7 +98,7 @@ class NewGroup extends Component {
 				<br/>
                 <input
                     type="submit"
-                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                    className="btn btn-large blue"
                 />
               </form>
           </div>
@@ -111,12 +111,10 @@ class NewGroup extends Component {
 
 NewGroup.propTypes = {
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
 });
 
 export default connect(

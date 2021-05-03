@@ -74,9 +74,10 @@ class EditGroupName extends Component {
 			//window.location.reload();
 		  })
 	]).then(axios.spread((data1, data2) => {
-	// output of req.
+
 	console.log('data1', data1, 'data2', data2)
 	}));
+	
 	  
   };
 
@@ -102,7 +103,7 @@ class EditGroupName extends Component {
 				<div className="inline-btn">
                 <input
                     type="submit"
-                    className="btn btn-large waves-effect waves-light hoverable light-blue accent-3"
+                    className="btn btn-large light-blue"
 					value="Change"
                 />
 				</div>

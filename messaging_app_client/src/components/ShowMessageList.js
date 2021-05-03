@@ -120,7 +120,7 @@ class ShowMessageList extends Component {
 			  
 				<div className="col s12">
 				<br/>
-				<Link to="/dashboard" className="btn btn-small waves-effect waves-light hoverable blue accent-3">
+				<Link to="/dashboard" className="btn btn-small blue">
 					  Back
 				</Link>
 				

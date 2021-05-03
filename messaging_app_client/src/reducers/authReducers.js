@@ -4,11 +4,8 @@
 
 // Acknowledgements to https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-2-frontend-6eac4e38ee82
 
-import {
-  SET_CURRENT_USER,
-  USER_LOADING
-} from "../actions/types";
-
+const USER_LOADING = "USER_LOADING";
+const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 const isEmpty = require("is-empty");
 

@@ -80,7 +80,7 @@ class NewGroupMember extends Component {
 				<div className="inline-btn">
                 <input
                     type="submit"
-                    className="btn btn-large waves-effect waves-light hoverable light-blue accent-3"
+                    className="btn btn-large light-blue"
 					value="Invite"
                 />
 				</div>

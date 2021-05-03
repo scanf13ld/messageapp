@@ -47,8 +47,6 @@ class Dashboard extends Component {
 				  <b>Welcome,</b> {user.name.split(" ")[0]}!
 				</h4>
 				
-				
-				
 				<div className="row">
 					<div className="col-md-12">
 					
@@ -64,23 +62,17 @@ class Dashboard extends Component {
 					</BounceDiv>
 				</div>
 				
-				<Link to="/new-conversation" className="btn btn-large waves-effect waves-light hoverable light-blue accent-3">
+				<Link to="/new-conversation" className="btn btn-large light-blue">
 					  Start a conversation
 				</Link><br/><br/>
 				
-				<Link to="/new-group" className="btn btn-large waves-effect waves-light hoverable light-blue accent-3">
+				<Link to="/new-group" className="btn btn-large light-blue">
 					  Create a group
-				</Link><br/>
+				</Link><br/><br/>
 				
 				<button
-				  style={{
-					width: "150px",
-					borderRadius: "3px",
-					letterSpacing: "1.5px",
-					marginTop: "1rem"
-				  }}
 				  onClick={this.onLogoutClick}
-				  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+				  className="btn btn-large indigo"
 				>
 				  Logout
 				</button>

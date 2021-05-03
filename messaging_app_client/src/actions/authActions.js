@@ -8,19 +8,15 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import {
-  GET_ERRORS,
-  SET_CURRENT_USER,
-  USER_LOADING
-} from "./types";
+const USER_LOADING = "USER_LOADING";
+const SET_CURRENT_USER = "SET_CURRENT_USER";
 
-export const registerUser = (userData, history) => dispatch => { // Register User
+export const registerUser = (userData, history) => dispatch => { // register User
   axios
     .post("/api/users/register", userData)
     .then(res => history.push("/login")) // re-direct to login on successful register
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
         payload: err.response.data
       })
     );
@@ -44,7 +40,6 @@ export const loginUser = userData => dispatch => { // login - get user token
     })
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
         payload: err.response.data
       })
     );

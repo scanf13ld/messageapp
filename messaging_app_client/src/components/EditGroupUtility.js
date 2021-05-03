@@ -26,7 +26,7 @@ class EditGroupUtility extends Component {
 	console.log("EditGroupUtility: groupname= "+ this.props.groupname);
     return (
 	<div className="col s12 center-align">
-		<button className="btn btn-large waves-effect waves-light hoverable light-blue accent-3" onClick={() => this.setState({ showing: !showing })}>Edit Group</button>
+		<button className="btn btn-large light-blue" onClick={() => this.setState({ showing: !showing })}>Edit Group</button>
 		
 		{ showing ? (
 			<React.Fragment>
