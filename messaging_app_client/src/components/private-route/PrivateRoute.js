@@ -2,7 +2,7 @@
 // CSE 330 Creative Project
 // Shane Canfield and Laura Bucchieri
 
-// Acknowledgements to blog.bitsrc.io
+// Acknowledgements to https://blog.bitsrc.io/build-a-login-auth-app-with-the-mern-stack-part-3-react-components-88190f8db718
 
 import React from "react";
 import { Route, Redirect } from "react-router-dom";

@@ -2,7 +2,7 @@
 // CSE 330 Creative Project
 // Shane Canfield and Laura Bucchieri
 
-// Acknowledgements to blog.bitsrc.io
+// Acknowledgements to https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-2-frontend-6eac4e38ee82
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 
+
+// Styling
 import styled, { keyframes } from 'styled-components';
 import { pulse, slideInLeft } from 'react-animations';
 
@@ -19,6 +21,7 @@ const SlideAnimation = keyframes`${slideInLeft}`;
 const SlideDiv = styled.div`
   animation: 1 0.2s ${SlideAnimation};
 `;
+
 
 class Login extends Component {
 	constructor() {

@@ -2,7 +2,7 @@
 // CSE 330 Creative Project
 // Shane Canfield and Laura Bucchieri
 
-// Acknowledgements to blog.bitsrc.io
+// Acknowledgements to https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
 
 const Validator = require("validator");
 const isEmpty = require("is-empty");
