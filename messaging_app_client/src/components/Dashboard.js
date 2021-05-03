@@ -44,7 +44,7 @@ class Dashboard extends Component {
 			  <div className="col s12 center-align">
 			  
 				<h4>
-				  <b>Hey there,</b> {user.name.split(" ")[0]}!
+				  <b>Welcome,</b> {user.name.split(" ")[0]}!
 				</h4>
 				
 				
