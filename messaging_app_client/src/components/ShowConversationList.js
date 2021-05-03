@@ -51,6 +51,7 @@ class ShowConversationList extends Component {
 	// output of req.
 	console.log('data1', data1, 'data2', data2)
 	}));
+	window.location.reload();
 
   };  
 

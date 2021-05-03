@@ -211,7 +211,7 @@ router.get('/groupmessages/:id', (req, res) => {
 
 router.delete('/group/:id', (req, res) => {
 	
-	Group.deleteOne({group_id: req.params.id })
+	Group.deleteOne({_id: req.params.id })
     .then(group => res.json({ mgs: 'Group entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'Could not delete group' }));
   
@@ -221,6 +221,14 @@ router.delete('/group/messages/:id', (req, res) => {
 	
 	GroupMessage.deleteMany({group_id: req.params.id })
     .then(group => res.json({ mgs: 'Group messages deleted successfully' }))
+    .catch(err => res.status(404).json({ error: 'Could not delete group messages' }));
+  
+});
+
+router.delete('/group/members/:id', (req, res) => {
+	
+	GroupMember.deleteMany({group_id: req.params.id })
+    .then(group => res.json({ mgs: 'Group members deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'Could not delete group messages' }));
   
 });
