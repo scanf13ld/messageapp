@@ -59,10 +59,10 @@ class Login extends Component {
 	render() {
 		return (
 			
-			  <div style={{ height: "100vh" }} className="container valign-wrapper">
+			  <div style={{ marginTop: "100px" }} className="container">
 			  <SlideDiv>
 				<div className="row">
-				  <div className="col center-align">
+				  <div className="col s8 center-align">
 					<Link to="/" className="btn btn-small blue">
 					  Back
 				    </Link>

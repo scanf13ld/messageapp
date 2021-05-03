@@ -56,7 +56,7 @@ class Register extends Component {
 
     render() {
       return (
-            <div style={{ height: "100vh" }} className="container valign-wrapper">
+            <div style={{ height: "75vh" }} className="container valign-wrapper">
 			<SlideDiv>
               <div className="row">
                 <div className="col s8 center-align">
