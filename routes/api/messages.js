@@ -178,7 +178,7 @@ router.get('/groups/:id', (req, res) => {
   //console.log(req.params.user1);
   //let user1 = mongoose.Types.ObjectId(req.params.user1);
   let user1 = req.params.id;
-  console.log("here");
+  console.log("test");
   console.log(user1);
   GroupMember.find(  
 	{ username : user1 })
@@ -238,6 +238,16 @@ router.put('/group/:id', (req, res) => {
 	console.log(req.params.id);
 	var newvalues = { $set: {name: req.body.name}};
 	Group.updateOne({_id: req.params.id }, newvalues)
+    .then(group => res.json({ mgs: 'Group entry changed successfully' }))
+    .catch(err => res.status(404).json({ error: 'Could not change group name' }));
+  
+});
+
+router.put('/group/members/:id', (req, res) => {
+	console.log(req.body);
+	console.log(req.params.id);
+	var newvalues = { $set: {name: req.body.name}};
+	GroupMember.updateOne({group_id: req.params.id }, newvalues)
     .then(group => res.json({ mgs: 'Group entry changed successfully' }))
     .catch(err => res.status(404).json({ error: 'Could not change group name' }));
   

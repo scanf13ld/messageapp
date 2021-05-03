@@ -40,22 +40,43 @@ class EditGroupName extends Component {
 	console.log("this.props.group_id: "+ this.props.group_id);
 	console.log("data: "+ data.name);
 	
-	
-    axios
-      .put('http://localhost:8082/api/messages/group/'+this.props.group_id, data)
-      .then(res => {
-        this.setState({
-		  group_id: '',
-		  name: ''
-        })
-        this.props.history.push('/');
-		//window.location.reload();
-		
-      })
-      .catch(err => {
-        console.log("Error in editing group name!");
-		//window.location.reload();
-      })
+	axios.all
+	([
+		axios
+		  .put('http://localhost:8082/api/messages/group/'+this.props.group_id, data)
+		  .then(res => {
+			this.setState({
+			  group_id: '',
+			  name: ''
+			})
+			this.props.history.push('/');
+			//window.location.reload();
+			
+		  })
+		  .catch(err => {
+			console.log("Error in editing group name!");
+			//window.location.reload();
+		  }),
+		  
+		axios
+		  .put('http://localhost:8082/api/messages/group/members/'+this.props.group_id, data)
+		  .then(res => {
+			this.setState({
+			  group_id: '',
+			  name: ''
+			})
+			this.props.history.push('/');
+			//window.location.reload();
+			
+		  })
+		  .catch(err => {
+			console.log("Error in editing group name!");
+			//window.location.reload();
+		  })
+	]).then(axios.spread((data1, data2) => {
+	// output of req.
+	console.log('data1', data1, 'data2', data2)
+	}));
 	  
   };
 

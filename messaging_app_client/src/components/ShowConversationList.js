@@ -51,22 +51,8 @@ class ShowConversationList extends Component {
 	// output of req.
 	console.log('data1', data1, 'data2', data2)
 	}));
-	
-	axios
-      .delete('http://localhost:8082/api/messages/conversation/'+id)
-      .then(res => {
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log("Error form ShowConversationList_deleteClick");
-		window.location.reload();
-      })
-	  window.location.reload();
-	  
-   };
-  
-  
-  
+
+  };  
 
   componentDidMount() {
 	const { user } = this.props.auth; 

@@ -18,7 +18,6 @@ class ShowGroupList extends Component {
     };
 	
 	this.onDeleteClick = this.onDeleteClick.bind(this);
-	this.getUpdatedGroups = this.getUpdatedGroups.bind(this);
 	
   }
   
@@ -84,26 +83,6 @@ class ShowGroupList extends Component {
       })
   };
   
-  getUpdatedGroups() {
-	const { user } = this.props.auth; 
-	//console.log(this.props.match.params.id);
-	var request = {
-		params: {
-			user1: user.username
-		}
-	}
-    axios
-      .get('http://localhost:8082/api/messages/groups/'+user.username, request)
-      .then(res => {
-        this.setState({
-          groups: res.data,
-		  
-        })
-      })
-      .catch(err =>{
-        console.log('Error from ShowGroupsList');
-      })
-  };
   
   
 	
